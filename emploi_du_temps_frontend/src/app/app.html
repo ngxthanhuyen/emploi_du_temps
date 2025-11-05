@@ -1,0 +1,28 @@
+<nav>
+  <div class="nav-container">
+    <ul class="nav-links left-links">
+      <li><a routerLinkActive="active-link" routerLink="/etudiants">Étudiants</a></li>
+      <li><a routerLinkActive="active-link" routerLink="/profs">Profs</a></li>
+    </ul>
+
+    <div class="logo"></div>
+
+    <ul class="nav-links right-links">
+      <li><a routerLinkActive="active-link" routerLink="/cours">Cours</a></li>
+      <li><a routerLinkActive="active-link" routerLink="/seances">Séances</a></li>
+    </ul>
+
+    <!-- Toggle menu -->
+    <input type="checkbox" id="menu-toggle" />
+    <label for="menu-toggle" class="menu-icon">&#9776;</label>
+
+    <!-- Menu à faire glisser -->
+    <ul class="nav-links toggle-nav">
+      <li><a routerLinkActive="active-link" routerLink="/etudiants">Étudiants</a></li>
+      <li><a routerLinkActive="active-link" routerLink="/profs">Profs</a></li>
+      <li><a routerLinkActive="active-link" routerLink="/cours">Cours</a></li>
+      <li><a routerLinkActive="active-link" routerLink="/seances">Séances</a></li>
+    </ul>
+  </div>
+</nav>
+<router-outlet></router-outlet>

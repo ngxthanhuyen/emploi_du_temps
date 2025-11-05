@@ -1,0 +1,55 @@
+<h2>Liste des professeurs</h2>
+
+<div class="container">
+    <button class="btn-form btn-toggle" (click)="toggleForm()" [ngClass]="{ 'open' : showForm}">
+        <span *ngIf="showForm" class="label">Fermer le formulaire</span>
+        <span *ngIf="!showForm" class="label"> Ajouter un professeur</span>
+        <span class="arrow">{{ showForm ? '↓' : '→' }}</span>
+    </button>
+    <!-- Formulaire -->
+    <div *ngIf="showForm" class="form-container">
+        <h3>Ajouter un professeur</h3>
+        <form (ngSubmit)="ajouterProf()">
+            <div class="form-group">
+                <label>Nom</label>
+                <input type="text" [(ngModel)]="newProf.nom" name="nom" placeholder="...">
+            </div>
+            <div class="form-group">
+                <label>Prénom</label>
+                <input type="text" [(ngModel)]="newProf.prenom" name="prenom" placeholder="...">
+            </div>
+            <button class="btn btn-save" type="submit">💾 Enregistrer</button>
+        </form>
+    </div>
+
+    <!-- Bouton pour afficher/masquer la liste -->
+    <button class="btn-list btn-toggle" (click)="toggleList()">
+        <span *ngIf="showList" class="label">Masquer la liste des professeurs</span>
+        <span *ngIf="!showList" class="label">Voir la liste des professeurs</span>
+        <span class="arrow">{{ showList ? '↓' : '→' }}</span>
+    </button>
+
+    <!-- Liste des étudiants -->
+    <div *ngIf="showList" class="listeProfs">
+        <div class="listeProfs-container">
+            <div *ngFor="let prof of profs" class="card-prof">
+                <!-- Bouton supprimer -->
+                <div class="delete-bar" (click)="openModal(prof)" >✖</div>
+                <div class="prof-gauche">
+                    <div class="bullet"></div>
+                <div>
+                <div class="prof-nom">{{ prof.nom }} {{ prof.prenom }}</div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+    <div class="modal" *ngIf="showModal">
+        <div class="modal-content">
+            <p>Voulez-vous vraiment supprimer ce professeur de la liste ?</p>
+            <div class="modal-actions">
+                <button class="btn-confirm" (click)="supprimerProf()">Oui</button>
+                <button class="btn-cancel" (click)="closeModal()">Non</button>
+            </div>
+    </div>
+</div>

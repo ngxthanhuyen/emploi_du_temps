@@ -1,0 +1,157 @@
+@font-face {
+  font-family: Nitti;
+  src: url(../assets/fonts/nitti/Nitti-Normal.ttf);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+nav {
+  box-shadow: 0 8px 16px rgba(0,0,0,.1);
+  font-family: Nitti;
+  padding: 10px 0;
+}
+
+.nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center; 
+  gap: 150px; 
+  position: relative;
+}
+
+.logo {
+  background: url('../assets/images/logo.png') no-repeat center;
+  background-size: cover;
+  width: 150px;
+  height: 100px;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 150px; 
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links li a {
+  text-decoration: none;
+  color: black;
+  font-size: 22px;
+  font-weight: bold;
+  position: relative;
+  font-family: Nitti;
+}
+
+/* Hover et sélection */
+.nav-links li a::after {
+  content: '';
+  display: block;
+  height: 3px;
+  background-color: #0069a8;
+  width: 0%;
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  transition: width 0.3s ease;
+}
+
+.nav-links li a:hover,
+.nav-links li a.active-link {
+  color: #0069a8;
+  cursor: pointer;
+}
+
+.nav-links li a:hover::after,
+.nav-links li a.active-link::after {
+  width: 100%;
+}
+
+/* Bouton hamburger caché par défaut */
+#menu-toggle,
+.menu-icon,
+.toggle-nav {
+  display: none;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+
+  /* Container du nav reste en flex mais les éléments s’alignent à droite */
+  .nav-container {
+    justify-content: flex-end;
+    gap: 10px;
+    position: relative;
+  }
+
+  /* Logo à gauche */
+  .logo {
+    margin-right: auto;
+    margin-left: 0;
+    font-size: 28px;
+  }
+
+  /* Menu burger visible */
+  .menu-icon {
+    display: block;
+    font-size: 28px;
+    cursor: pointer;
+  }
+
+  .toggle-nav {
+    display: block;
+  }
+
+  /* Cache le menu par défaut */
+  .nav-links {
+    position: fixed;     
+    right: 0;
+    background-color: white;
+    display: flex;
+    flex-direction: column;  
+    padding: 20px 0 20px 20px;
+    width: 150px;
+    justify-content: flex-start;
+    box-shadow: -2px 0 8px rgba(0,0,0,0.2);
+    border-radius: 0 0 0 8px;
+    transform: translateX(100%);   
+    transition: transform 0.3s ease;
+    z-index: 99;
+    height: calc(100vh - 120px); 
+    overflow-y: scroll;          
+    margin: 0;
+    text-align: right;
+    top : 120px;
+  }
+
+  /* Affiche le menu quand toggle checked */
+  #menu-toggle:checked + .menu-icon + .nav-links {
+    transform: translateX(0);
+  }
+
+  /* Style des items */
+  .nav-links li {
+    padding: 10px 20px;
+  }
+
+  .nav-links li a {
+    font-size: 18px;
+  }
+
+  /* Cache la checkbox toggle */
+  #menu-toggle {
+    display: none;
+  }
+  .menu-icon {
+    display: block;
+    font-size: 28px;
+    cursor: pointer;
+  }
+}
+

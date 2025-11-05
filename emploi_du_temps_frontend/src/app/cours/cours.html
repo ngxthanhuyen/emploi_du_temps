@@ -1,0 +1,52 @@
+<h2>Liste des cours</h2>
+
+<div class="container">
+    <button class="btn-form btn-toggle" (click)="toggleForm()" [ngClass]="{ 'open' : showForm}">
+        <span *ngIf="showForm" class="label">Fermer le formulaire</span>
+        <span *ngIf="!showForm" class="label"> Ajouter un cours</span>
+        <span class="arrow">{{ showForm ? '↓' : '→' }}</span>
+    </button>
+    <!-- Formulaire -->
+    <div *ngIf="showForm" class="form-container">
+        <h3>Ajouter un cours</h3>
+        <form (ngSubmit)="ajouterCours()">
+            <div class="form-group">
+                <label>Nom</label>
+                <input type="text" [(ngModel)]="newCours.nom" name="nom" placeholder="...">
+            </div>
+          
+            <button class="btn btn-save" type="submit">💾 Enregistrer</button>
+        </form>
+    </div>
+
+    <!-- Bouton pour afficher/masquer la liste -->
+    <button class="btn-list btn-toggle" (click)="toggleList()">
+        <span *ngIf="showList" class="label">Masquer la liste des cours</span>
+        <span *ngIf="!showList" class="label">Voir la liste des cours</span>
+        <span class="arrow">{{ showList ? '↓' : '→' }}</span>
+    </button>
+
+    <!-- Liste des étudiants -->
+    <div *ngIf="showList" class="listeCours">
+        <div class="listeCours-container">
+            <div *ngFor="let cour of cours" class="card-cours">
+                <!-- Bouton supprimer -->
+                <div class="delete-bar" (click)="openModal(cour)" >✖</div>
+                <div class="cours-gauche">
+                    <div class="bullet"></div>
+                <div>
+                <div class="cours-nom">{{ cour.nom }} {{ cour.prenom }}</div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+    <div class="modal" *ngIf="showModal">
+    <div class="modal-content">
+        <p>Voulez-vous vraiment supprimer ce cours de la liste ?</p>
+        <div class="modal-actions">
+            <button class="btn-confirm" (click)="supprimerCours()">Oui</button>
+            <button class="btn-cancel" (click)="closeModal()">Non</button>
+        </div>
+    </div>
+</div>
